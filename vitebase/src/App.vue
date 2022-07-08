@@ -8,7 +8,8 @@
   <p>{{ computedinfo }}</p>
 
   <!-- components -->
-  <myDialog />
+  <button @click="showDialog = !showDialog">对话框</button>
+  <myDialog @close="closeDialog" v-if="showDialog" />
 </template>
 
 <script>
@@ -22,7 +23,8 @@ export default {
         name: 'Vue2',
         author: 'EvanYou'
       },
-      weather: '晴天'
+      weather: '晴天',
+      showDialog: false
     }
   },
   methods: {
@@ -31,6 +33,9 @@ export default {
     },
     updateval1 () {
       this.text2.name = 'Vue3'
+    },
+    closeDialog () {
+      this.showDialog = false
     }
   },
   watch: {
