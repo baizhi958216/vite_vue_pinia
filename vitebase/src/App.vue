@@ -1,45 +1,62 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <p>{{ testval }}</p>
+  <p>{{ text1 }}</p>
   <button @click=updateval>更新</button>
+  <p>{{ text2 }}</p>
+  <button @click=updateval1>更新</button>
+  <p>{{ `今天的天气是：${this.weather}现在的时间是：${new Date().toISOString()}` }}</p>
+  <p>{{ computedinfo }}</p>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      testval: 'testval'
+      text1: 'Vue2',
+      text2: {
+        name: 'Vue2',
+        author: 'EvanYou'
+      },
+      weather: '晴天'
     }
   },
   methods: {
     updateval () {
-      this.testval = 'testval2'
+      this.text1 = 'Vue3'
+    },
+    updateval1 () {
+      this.text2.name = 'Vue3'
     }
   },
-  beforeCreate () {
-    console.log('beforeCreate')
+  watch: {
+    text1 (newVlaue, oldValue) {
+      console.log(newVlaue, oldValue)
+    },
+    //当侦听的某个变量值是对象时不起作用
+    //则需要深度监听
+    text2: {
+      handler (newVlaue, oldValue) {
+        console.log(newVlaue, oldValue)
+      },
+      deep: true
+    },
+    //因为数据同源, text2中newValue跟oldValue值一致
+    //如果想要得到不同的值需要结合计算属性computed。
+    datadiff: {
+      handler (newVlaue, oldValue) {
+        console.log(newVlaue, oldValue)
+      },
+      deep: true
+    }
   },
-  created () {
-    console.log('created')
+  computed: {
+    datadiff () {
+      return JSON.parse(JSON.stringify(this.text2))
+    },
+    computedinfo () {
+      return `今天的天气是：${this.weather}现在的时间是：${new Date().toISOString()}`
+    }
   },
-  beforeMount () {
-    console.log('beforeMount')
-  },
-  mounted () {
-    console.log('mounted')
-  },
-  beforeUpdate () {
-    console.log('beforeUpdated')
-  },
-  updated () {
-    console.log('updated')
-  },
-  beforeUnmount () {
-    console.log('beforeUnmount')
-  },
-  unmounted () {
-    console.log('unmounted')
-  }
 }
 </script>
 
