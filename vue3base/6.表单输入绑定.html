@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单输入绑定</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+      双向绑定 
+      输入型选手: input textarea ...
+    -->
+    <input placeholder="edit me" v-model="message" @keydown.ctrl.enter="clean">
+    <p>{{message}}</p>
+    <textarea v-model="message" @keydown.ctrl.enter="clean"></textarea>
+    <hr>
+    <input type="checkbox" v-model="checked" id="chkb">
+    <label for="chkb">{{checked}}</label>
+  </div>
+
+  <script>
+    const App = {
+      data () {
+        return {
+          message: '',
+          checked: false
+        }
+      },
+      methods: {
+        clean () {
+          this.message = ''
+        }
+      }
+    }
+    Vue.createApp(App).mount("#app")
+  </script>
+</body>
+
+</html>

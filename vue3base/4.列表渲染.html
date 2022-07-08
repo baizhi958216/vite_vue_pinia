@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列表渲染</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 列表渲染 -->
+    <!-- 
+      for-in: es5遍历
+      遍历key, index索引是字符串型的数字, 不可用于几何运算
+      遍历的顺序可能随机, 不按照数组的顺序
+      遍历出数组的可枚举属性, 包括原型
+      适合遍历对象, 数组还是算了
+     -->
+    <div v-for="(item,name,index) in items_obj">
+      {{item}}-> {{name}}-> {{index}}
+    </div>
+    <div v-for="(item,name,index) of items_obj">
+      {{item}}-> {{name}}-> {{index}}
+    </div><br>
+    <!-- 
+      for-of: es6迭代器
+      遍历value, 不遍历原型method和name
+      有效避开for-in的坑 
+    -->
+    <div v-for="(item,name,index) in items_arr">
+      {{item}}-> {{name}}-> {{index}}
+    </div>
+    <div v-for="(item,name,index) of items_arr">
+      {{item}}-> {{name}}-> {{index}}
+    </div>
+    <br>
+    <!-- 口诀表 -->
+    <div v-for="n in range">
+      <template v-for="m in n">
+        <template v-if="m<=n">{{m}}*{{n}}={{n*m}}&ensp;</template>
+      </template>
+    </div>
+  </div>
+
+  <script>
+    const App = {
+      data () {
+        return {
+          range: 9,
+          items_obj: {
+            name: "Vue",
+            author: "Evan You",
+            version: 3
+          },
+          items_arr: [
+            { name: 'HTML' },
+            { name: 'CSS' },
+            { name: 'JavaScript' },
+            { name: 'Vue' },
+            { name: 'React' }
+          ]
+        }
+      }
+    }
+    Vue.createApp(App).mount("#app")
+  </script>
+</body>
+
+</html>

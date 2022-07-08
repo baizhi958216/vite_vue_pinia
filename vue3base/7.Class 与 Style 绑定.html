@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 与 Style 绑定</title>
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- class绑定 -->
+    <div :class='{active:isActive,style1:isActiveStyle1}'>This is .active</div>
+    <button @click="disables1">关闭样式</button>
+    <hr />
+
+    <div :class='vue3'>This is Vue3</div>
+    <hr />
+
+    <!-- 数组 -->
+    <div :class="[red,bigfont,backg]">Array for style binding</div>
+    <hr />
+
+    <!-- 三元表达式 -->
+    <!-- [condition?val1:val2] -->
+    <div :class="[isActiveStyle1?'style1':vue3,'backgray']">Array for style binding</div>
+    <hr />
+
+    <!-- 对象 -->
+    <div :class='[{active:isActive},{style1:isActiveStyle1},backg]'>This is .active</div>
+
+    <!-- style绑定 -->
+    <div :style="{color:'red',fontSize:'40px'}">This is Style binding</div>
+    <div :style="stylebind">This is Style binding</div>
+    <textarea v-model="stylebind"></textarea>
+
+  </div>
+
+  <script>
+    const App = {
+      data () {
+        return {
+          isActive: false,
+          isActiveStyle1: true,
+          vue3: 'vue3Class',
+          red: 'redstyle',
+          bigfont: 'largesize',
+          backg: 'backgray',
+          stylebind: 'font-size:40px;color:blue;'
+        }
+      },
+      methods: {
+        disables1 () {
+          this.isActiveStyle1 = false
+        }
+      }
+    }
+    Vue.createApp(App).mount("#app")
+  </script>
+
+  <style>
+    .active {
+      display: none;
+    }
+
+    .style1 {
+      color: red;
+      font-size: 40px;
+    }
+
+    .vue3Class {
+      font-size: 40px;
+      color: blue;
+    }
+
+    .redstyle {
+      color: red
+    }
+
+    .largesize {
+      font-size: 60px;
+    }
+
+    .backgray {
+      background-color: gray;
+    }
+  </style>
+</body>
+
+</html>

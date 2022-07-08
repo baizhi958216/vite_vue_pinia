@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件处理</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>The button above has been click {{num}} times.</p>
+    <!-- 鼠标右键绑定 -->
+    <!-- prevent 阻止默认行为 -->
+    <button @click.right.prevent="num+=1">NUM++</button><br />
+    <button @click="count(1,$event)">NUM--</button>
+    <hr />
+    <!-- v-model 双向绑定 -->
+    <!-- .exact 精确控制 适用于绑定组合键 -->
+    <input @keydown.exact="submit" @keydown.ctrl.enter="submitEnter" v-model="inputVal">
+    <div>{{inputVal}}</div>
+  </div>
+
+  <script>
+    const App = {
+      data () {
+        return {
+          num: 0,
+          inputVal: ''
+        }
+      },
+      methods: {
+        count (val, val2) {
+          this.num > 0 ? this.num -= val : 0
+          console.log(val2)
+        },
+        submit (e) {
+          if (e.key === 'Control' || e.key === 'Enter') {
+            console.error('Your keydown is illegal')
+          } else {
+            console.log('submit')
+          }
+        },
+        submitEnter () {
+          console.log('inputVal已清空')
+          this.inputVal = ''
+        }
+      }
+    }
+    Vue.createApp(App).mount("#app")
+  </script>
+</body>
+
+</html>

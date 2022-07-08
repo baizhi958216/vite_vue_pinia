@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模板语法</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>{{message}}</div>
+    <div v-html="message"></div>
+    <a href="https://baidu.com" target="_blank">页面1</a><br>
+    <!-- v-bind语法糖 -->
+    <a :href="baiduhref" target="_blank">页面1</a>
+    <!-- js表达式 -->
+    <div>{{1+1}}</div>
+    <div>{{show?'YES':'NO'}}</div>
+    <div>{{baiduhref.split('').reverse().join('\/')}}</div>
+    <!-- v-bind也支持简单的表达式 -->
+    <div :id="'data-'+(id+1)">id="data-{{id+1}}"</div>
+    <div :id="'data-'+(id+2)">id="data-{{id+2}}"</div>
+    <!-- v-bind动态属性 -->
+    <a :[attr1]="val1" :[attr2]="val2" :[attr3]="val3">页面2</a>
+  </div>
+
+  <script>
+    const App = {
+      data () {
+        return {
+          show: true,
+          id: 0,
+          message: "Message: <span style='color:red;'>Hello Vue</span>",
+          baiduhref: "https://baidu.com",
+          attr1: "href",
+          val1: "https://baidu.com",
+          attr2: "target",
+          val2: "_blank",
+          attr3: "style",
+          val3: "color:green;font-size:30px;text-decoration: none;background-color:rgba(30,40,222,.1);"
+        }
+      }
+    }
+    Vue.createApp(App).mount("#app")
+  </script>
+</body>
+
+</html>
