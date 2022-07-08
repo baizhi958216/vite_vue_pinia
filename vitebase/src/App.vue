@@ -6,10 +6,15 @@
   <button @click=updateval1>更新</button>
   <p>{{ `今天的天气是：${this.weather}现在的时间是：${new Date().toISOString()}` }}</p>
   <p>{{ computedinfo }}</p>
+
+  <!-- components -->
+  <myDialog />
 </template>
 
 <script>
+import myDialog from './components/myDialog.vue'
 export default {
+  components: { myDialog },
   data () {
     return {
       text1: 'Vue2',
