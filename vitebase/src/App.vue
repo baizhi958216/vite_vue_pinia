@@ -1,13 +1,47 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <p>{{ testval }}</p>
+  <button @click=updateval>更新</button>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      testval: 'testval'
+    }
+  },
+  methods: {
+    updateval () {
+      this.testval = 'testval2'
+    }
+  },
+  beforeCreate () {
+    console.log('beforeCreate')
+  },
+  created () {
+    console.log('created')
+  },
+  beforeMount () {
+    console.log('beforeMount')
+  },
+  mounted () {
+    console.log('mounted')
+  },
+  beforeUpdate () {
+    console.log('beforeUpdated')
+  },
+  updated () {
+    console.log('updated')
+  },
+  beforeUnmount () {
+    console.log('beforeUnmount')
+  },
+  unmounted () {
+    console.log('unmounted')
+  }
+}
+</script>
 
 <style>
 #app {
