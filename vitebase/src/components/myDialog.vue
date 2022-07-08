@@ -1,8 +1,9 @@
 <template>
   <div class="dialog-bg">
     <div class="dialog">
-      <h1>测试标题</h1>
-      <div>测试内容</div>
+      <div v-html="title"></div>
+      <div>{{ weather }}</div>
+      <hr>
       <div><input type="text"></div>
       <div class="btn-group">
         <button>确定</button>
@@ -14,6 +15,16 @@
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    weather: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
 

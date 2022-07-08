@@ -9,7 +9,7 @@
 
   <!-- components -->
   <button @click="showDialog = !showDialog">对话框</button>
-  <myDialog @close="closeDialog" v-if="showDialog" />
+  <myDialog title="<h2 style='color:red;'>当前天气</h2>" :weather="weather" @close="closeDialog" v-if="showDialog" />
 </template>
 
 <script>
