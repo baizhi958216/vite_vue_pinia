@@ -13,7 +13,14 @@
 
   <!-- components -->
   <button @click="showDialog = !showDialog">对话框</button>
-  <myDialog @close="closeDialog" v-if="showDialog"></myDialog>
+  <myDialog @close="closeDialog" v-if="showDialog">
+    <!-- header -->
+    <template v-slot:header>header</template>
+    <!-- main -->
+    <template v-slot:main>main</template>
+    <!-- footer 语法糖#-->
+    <template #footer>footer</template>
+  </myDialog>
 </template>
 
 <script>
@@ -29,8 +36,8 @@ export default {
       },
       weather: "晴天",
       showDialog: false,
-      conf:"父组件调用",
-      title:"当前天气"
+      conf: "父组件调用",
+      title: "当前天气"
     };
   },
   methods: {

@@ -1,6 +1,18 @@
 <template>
   <div class="dialog-bg">
     <div class="dialog">
+      <!-- header -->
+      <header>
+        <slot name="header" />
+      </header>
+      <!-- main -->
+      <main>
+        <slot name="main" />
+      </main>
+      <!-- footer -->
+      <footer>
+        <slot name="footer" />
+      </footer>
       <div class="btn-group">
         <button>确定</button>
         <button @click="cancel">取消</button>
