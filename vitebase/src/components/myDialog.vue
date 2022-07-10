@@ -1,13 +1,19 @@
 <template>
   <div class="dialog-bg">
     <div class="dialog">
-      <div v-html="title"></div>
-      <div>{{ weather }}</div>
-      <hr>
+      <div>{{ title }}</div>
+      <!-- 普通slot内容 -->
+      <!-- <slot/> -->
+      <!-- 提供后备(默认)内容的slot -->
+      <slot>
+        <p style="font-size: 40px;color: blue;">后备内容</p>
+      </slot>
+      <!-- 输入框 -->
       <div><input type="text"></div>
+      <!-- 按钮组 -->
       <div class="btn-group">
-        <button>确定</button>
-        <button @click="cancel">取消</button>
+        <button :class="[buttonConfirmStyle]" @click="confirm(conf)">确定</button>
+        <button :class="[buttonCancelStyle]" @click="cancel">取消</button>
       </div>
     </div>
   </div>
@@ -20,19 +26,29 @@ export default {
       type: String,
       default: ''
     },
-    weather: {
-      type: String,
-      default: ''
+    buttonConfirmStyle:{
+      type:String,
+      default:''
+    },
+    buttonCancelStyle:{
+      type:String,
+      default:''
+    },
+    conf:{
+      type:String
     }
   },
-  data () {
+  data() {
     return {
 
     }
   },
   methods: {
-    cancel () {
+    cancel() {
       this.$emit('close')
+    },
+    confirm(pr){
+      console.log(`${pr}子组件的confirm`);
     }
   }
 }
@@ -60,5 +76,11 @@ export default {
   margin-top: 50px;
   display: flex;
   justify-content: space-around;
+}
+.btnConfirm{
+  background-color: rgba(85, 221, 85, 0.781);
+}
+.btnCncel{
+  background-color: rgba(255, 0, 0, 0.425);
 }
 </style>
