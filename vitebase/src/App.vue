@@ -13,18 +13,7 @@
 
   <!-- components -->
   <button @click="showDialog = !showDialog">对话框</button>
-  <myDialog 
-  :title=title 
-  @close="closeDialog" 
-  :conf=conf
-  v-if="showDialog" 
-  buttonConfirmStyle="btnConfirm" 
-  buttonCancelStyle="btnCncel"
-  >
-    <!-- 普通slot内容 -->
-    <p style="font-size: 40px;color: blue;">晴天</p>
-    <!-- slot无内容则使用后备内容 -->
-  </myDialog>
+  <myDialog @close="closeDialog" v-if="showDialog"></myDialog>
 </template>
 
 <script>
