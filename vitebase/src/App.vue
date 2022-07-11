@@ -16,8 +16,13 @@
   <myDialog @close="closeDialog" v-if="showDialog" :weadatas="weadatas">
 
     <!-- 获取slot绑定的数据, 赋予strProp -->
-    <template v-slot:default="strProp">
+    <template v-slot:n_str="strProp">
       {{ strProp.strssss.job }}
+    </template>
+
+    <!-- 获取slot绑定的数据, 赋予strProp -->
+    <template v-slot:j_str="strProp">
+      {{ strProp.strssss.name }}
     </template>
 
   </myDialog>

@@ -3,7 +3,15 @@
     <div class="dialog">
       <h1>
         <!-- 向父组件传递strData, 保存在strssss -->
-        <slot :strssss="strData">{{ strData.name }}</slot>
+        <slot :strssss="strData" name="n_str">
+          {{ strData.name }}
+        </slot>
+      </h1>
+      <h1>
+        <!-- 向父组件传递strData, 保存在strssss -->
+        <slot :strssss="strData" name="j_str">
+          {{ strData.job }}
+        </slot>
       </h1>
       <div class="btn-group">
         <button>确定</button>
