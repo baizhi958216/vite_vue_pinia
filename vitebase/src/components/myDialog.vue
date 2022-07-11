@@ -3,7 +3,7 @@
     <div class="dialog">
       <!-- header -->
       <header>
-        <slot name="header" />
+        <slot name="header" :wid="'数据'" :dss="'啊大大'" />
       </header>
       <!-- main -->
       <main>
@@ -23,8 +23,7 @@
 
 <script>
 export default {
-  props: {
-  },
+  props: ['weadatas'],
   data() {
     return {
 

@@ -13,11 +13,11 @@
 
   <!-- components -->
   <button @click="showDialog = !showDialog">对话框</button>
-  <myDialog @close="closeDialog" v-if="showDialog">
+  <myDialog @close="closeDialog" v-if="showDialog" :weadatas="weadatas">
     <!-- header -->
-    <template v-slot:header>header</template>
-    <!-- main -->
-    <template v-slot:main>main</template>
+    |<template v-slot:header>header</template>
+    |<!-- main -->
+    <template v-slot:main>main</template> 
     <!-- footer 语法糖#-->
     <template #footer>footer</template>
   </myDialog>
@@ -25,6 +25,7 @@
 
 <script>
 import myDialog from "./components/myDialog.vue";
+import weadatas from './data'
 export default {
   components: { myDialog },
   data() {
@@ -37,7 +38,8 @@ export default {
       weather: "晴天",
       showDialog: false,
       conf: "父组件调用",
-      title: "当前天气"
+      title: "当前天气",
+      weadatas
     };
   },
   methods: {
