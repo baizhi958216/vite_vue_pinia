@@ -5,7 +5,7 @@ import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 let routes = [
-    {path:'/',component:()=>import('./views/Login.vue')},
+    {path:'/login',component:()=>import('./views/Login.vue')},
     {path:'/test',component:()=>import('./views/test.vue')}
 ]
 
