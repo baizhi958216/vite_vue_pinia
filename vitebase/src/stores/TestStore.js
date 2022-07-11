@@ -9,7 +9,11 @@ export const testStore = defineStore("test", {
     };
   },
   //   相当于methods
-  actions: {},
+  actions: {
+    testAction(){
+        this.count*=2
+    }
+  },
   //   相当于computed
   getters: {},
 });
