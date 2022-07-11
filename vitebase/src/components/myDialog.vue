@@ -1,12 +1,12 @@
 <template>
   <div class="dialog-bg">
     <div class="dialog">
-      
+
       <slot name="toat"></slot>
 
       <slot name="weather" :wea="weadatas"></slot>
-      
-      <input type="text">
+
+      <input type="text" v-model="modelValue">
 
       <div class="btn-group">
         <button @click="confirm">确定</button>
@@ -18,14 +18,24 @@
 
 <script>
 export default {
-  props: ['weadatas'],
+  props: ['weadatas', 'modelValue'],
   data() {
     return {
     }
   },
   methods: {
-    confirm(){
-      this.$emit('confirm')
+    confirm() {
+      this.$emit('update:model-value', this.modelValue)
+      this.$emit('close',
+        [
+          {
+            'message': 'Dialog will be close, the value is ' + this.modelValue
+          },
+          {
+            'emit': 'GoodJob'
+          }
+        ]
+      )
     },
     cancel() {
       this.$emit('close')

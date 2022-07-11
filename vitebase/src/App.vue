@@ -6,14 +6,18 @@
   <button @click="updateval1">更新</button>
   <p>
     {{
-        `今天的天气是：${this.weather}现在的时间是：${new Date().toISOString()}`
+        `今天的天气是：${weather}现在的时间是：${new Date().toISOString()}`
     }}
   </p>
   <p>{{ computedinfo }}</p>
 
   <!-- components -->
   <button @click="showDialog = !showDialog">对话框</button>
-  <myDialog :weadatas="weather" @close="closeDialog" @confirm="confirm" v-if="showDialog">
+  <myDialog 
+  v-model="weather" 
+  :weadatas="weather" 
+  @close="closeDialog"
+  v-if="showDialog">
     <template v-slot:toat>
       提示框<br />
     </template>
@@ -50,11 +54,9 @@ export default {
     updateval1() {
       this.text2.name = "Vue3";
     },
-    closeDialog() {
+    closeDialog(val) {
+      console.log(val);
       this.showDialog = false;
-    },
-    confirm(){
-      this.weather='雨天'
     }
   },
   watch: {
