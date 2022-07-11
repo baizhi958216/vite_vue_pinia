@@ -7,11 +7,13 @@
       {{ item.id }}-{{ item.name }}
     </div>
     <button @click="changeOEM">OEMChange</button>
+    <hr>
+    <div>{{c}}</div>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted,watch, computed } from 'vue'
 let a = ref('张三')
 
 function changeName() {
@@ -33,13 +35,23 @@ function changeOEM() {
   OEM[1].name = 'Acer'
 }
 
+// watch在组合式API不需要deep监听
+watch(OEM,(val)=>{
+  console.log(val);
+})
+
+// computed
+const c = computed(()=>{
+  return new Date().getFullYear()
+})
+
 onMounted(() => {
   console.log('Mounted');
 })
 
 onUnmounted(() => {
   console.log('Unmounted');
-}),
+})
 </script>
 
 <style>
