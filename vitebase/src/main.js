@@ -10,6 +10,7 @@ let routes = [
 ]
 
 const router = createRouter({
+    // 哈系路由会在地址前面加'#'
     history: createWebHashHistory(),
     routes
 })
