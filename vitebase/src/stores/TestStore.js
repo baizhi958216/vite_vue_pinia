@@ -15,5 +15,10 @@ export const testStore = defineStore("test", {
     }
   },
   //   相当于computed
-  getters: {},
+  getters: {
+    testCount(state){
+        // 这里用的是 state, 而不是 this
+        return state.count*10
+    }
+  },
 });
