@@ -1,57 +1,21 @@
 <template>
-  <div>
-    <p>{{ a }}</p>
-    <button @click="changeName">Change</button>
-    <hr>
-    <div v-for="(item, index) of OEM">
-      {{ item.id }}-{{ item.name }}
-    </div>
-    <button @click="changeOEM">OEMChange</button>
-    <hr>
-    <div>{{c}}</div>
-  </div>
+
+  {{ weather }}
+  <button @click="showDialog = !showDialog">窗口</button>
+  <MyDialogSetupVue v-model="weather" v-if="showDialog" @close="closeDialog" :weadatas="weather">
+    <template v-slot:toat>今日天气</template>
+    <template v-slot:today="todayProp"><br/>{{todayProp.wea}}<hr/></template>
+  </MyDialogSetupVue>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted,watch, computed } from 'vue'
-let a = ref('张三')
-
-function changeName() {
-  a.value = '李四'
+import { ref, reactive } from 'vue'
+import MyDialogSetupVue from './components/MyDialogSetup.vue'
+let showDialog = ref(false)
+let weather = '晴天'
+function closeDialog() {
+  showDialog.value = false
 }
-
-const OEM = reactive([{
-  id: 1,
-  name: 'ASUS'
-}, {
-  id: 2,
-  name: 'Lenoeo'
-}, {
-  id: 3,
-  name: 'Xiaomi'
-}])
-
-function changeOEM() {
-  OEM[1].name = 'Acer'
-}
-
-// watch在组合式API不需要deep监听
-watch(OEM,(val)=>{
-  console.log(val);
-})
-
-// computed
-const c = computed(()=>{
-  return new Date().getFullYear()
-})
-
-onMounted(() => {
-  console.log('Mounted');
-})
-
-onUnmounted(() => {
-  console.log('Unmounted');
-})
 </script>
 
 <style>
