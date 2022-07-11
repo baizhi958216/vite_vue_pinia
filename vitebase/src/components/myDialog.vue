@@ -6,7 +6,7 @@
 
       <slot name="weather" :wea="weadatas"></slot>
 
-      <input type="text" v-model="modelValue">
+      <input type="text" v-model="modelValue" @keyup.enter="confirm" @keyup.esc="cancel">
 
       <div class="btn-group">
         <button @click="confirm">确定</button>
@@ -22,6 +22,13 @@ export default {
   data() {
     return {
     }
+  },
+  // 窗体删除后执行
+  beforeUnmount() {
+    console.log('beforeUnmount');
+  },
+  unmounted() {
+    console.log('unmount');
   },
   methods: {
     confirm() {
