@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 // 引入路由
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 let routes = [
     {path:'/',component:()=>import('./views/Login.vue')},
@@ -10,8 +10,8 @@ let routes = [
 ]
 
 const router = createRouter({
-    // 哈系路由会在地址前面加'#'
-    history: createWebHashHistory(),
+    // createWebHistory: HTML5模式
+    history: createWebHistory(),
     routes
 })
 
