@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 let a = ref('张三')
 
 function changeName() {
@@ -32,6 +32,14 @@ const OEM = reactive([{
 function changeOEM() {
   OEM[1].name = 'Acer'
 }
+
+onMounted(() => {
+  console.log('Mounted');
+})
+
+onUnmounted(() => {
+  console.log('Unmounted');
+}),
 </script>
 
 <style>
