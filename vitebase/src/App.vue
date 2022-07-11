@@ -13,24 +13,21 @@
 
   <!-- components -->
   <button @click="showDialog = !showDialog">对话框</button>
-  <myDialog @close="closeDialog" v-if="showDialog" :weadatas="weadatas">
-
-    <!-- 获取slot绑定的数据, 赋予strProp -->
-    <template v-slot:n_str="strProp">
-      {{ strProp.strssss.job }}
+  <myDialog :weadatas="weather" @close="closeDialog" @confirm="confirm" v-if="showDialog">
+    <template v-slot:toat>
+      提示框<br />
     </template>
-
-    <!-- 获取slot绑定的数据, 赋予strProp -->
-    <template v-slot:j_str="strProp">
-      {{ strProp.strssss.name }}
+    <template v-slot:weather="childWeather">
+      今天的天气是
+      <span style="color:orange">
+        {{ childWeather.wea }}
+      </span>
     </template>
-
   </myDialog>
 </template>
 
 <script>
 import myDialog from "./components/myDialog.vue";
-import weadatas from './data'
 export default {
   components: { myDialog },
   data() {
@@ -43,8 +40,7 @@ export default {
       weather: "晴天",
       showDialog: false,
       conf: "父组件调用",
-      title: "当前天气",
-      weadatas
+      title: "当前天气"
     };
   },
   methods: {
@@ -56,6 +52,9 @@ export default {
     },
     closeDialog() {
       this.showDialog = false;
+    },
+    confirm(){
+      this.weather='雨天'
     }
   },
   watch: {

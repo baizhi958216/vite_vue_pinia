@@ -1,20 +1,15 @@
 <template>
   <div class="dialog-bg">
     <div class="dialog">
-      <h1>
-        <!-- 向父组件传递strData, 保存在strssss -->
-        <slot :strssss="strData" name="n_str">
-          {{ strData.name }}
-        </slot>
-      </h1>
-      <h1>
-        <!-- 向父组件传递strData, 保存在strssss -->
-        <slot :strssss="strData" name="j_str">
-          {{ strData.job }}
-        </slot>
-      </h1>
+      
+      <slot name="toat"></slot>
+
+      <slot name="weather" :wea="weadatas"></slot>
+      
+      <input type="text">
+
       <div class="btn-group">
-        <button>确定</button>
+        <button @click="confirm">确定</button>
         <button @click="cancel">取消</button>
       </div>
     </div>
@@ -26,13 +21,12 @@ export default {
   props: ['weadatas'],
   data() {
     return {
-      strData: {
-        name: 'baizhi958216',
-        job: 'SE'
-      }
     }
   },
   methods: {
+    confirm(){
+      this.$emit('confirm')
+    },
     cancel() {
       this.$emit('close')
     },
