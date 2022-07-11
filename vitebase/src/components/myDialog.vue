@@ -1,18 +1,10 @@
 <template>
   <div class="dialog-bg">
     <div class="dialog">
-      <!-- header -->
-      <header>
-        <slot name="header" :wid="'数据'" :dss="'啊大大'" />
-      </header>
-      <!-- main -->
-      <main>
-        <slot name="main" />
-      </main>
-      <!-- footer -->
-      <footer>
-        <slot name="footer" />
-      </footer>
+      <h1>
+        <!-- 向父组件传递strData, 保存在strssss -->
+        <slot :strssss="strData">{{ strData.name }}</slot>
+      </h1>
       <div class="btn-group">
         <button>确定</button>
         <button @click="cancel">取消</button>
@@ -26,7 +18,10 @@ export default {
   props: ['weadatas'],
   data() {
     return {
-
+      strData: {
+        name: 'baizhi958216',
+        job: 'SE'
+      }
     }
   },
   methods: {

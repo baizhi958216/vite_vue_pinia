@@ -14,12 +14,12 @@
   <!-- components -->
   <button @click="showDialog = !showDialog">对话框</button>
   <myDialog @close="closeDialog" v-if="showDialog" :weadatas="weadatas">
-    <!-- header -->
-    |<template v-slot:header>header</template>
-    |<!-- main -->
-    <template v-slot:main>main</template> 
-    <!-- footer 语法糖#-->
-    <template #footer>footer</template>
+
+    <!-- 获取slot绑定的数据, 赋予strProp -->
+    <template v-slot:default="strProp">
+      {{ strProp.strssss.job }}
+    </template>
+
   </myDialog>
 </template>
 
