@@ -24,6 +24,9 @@ let routes = [
       },
     ],
   },
+  {
+    path:'/product',component:()=>import('./views/ProductList.vue')
+  }
 ];
 
 const router = createRouter({
