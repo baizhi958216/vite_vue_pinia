@@ -10,14 +10,18 @@
                 <div class="card-sty"><button @click="addProduct(item)">添加到购物车</button></div>
             </div>
         </div>
+        <div>
+            <cartview></cartview>
+        </div>
     </div>
-    <div>{{myCart.getProducts}}</div>
+
 </template>
 
 <script setup>
 
 import { ref, reactive } from 'vue'
 import { cart } from '../stores/CartStore'
+import cartview from '../components/MyCart.vue'
 let myCart = cart()
 let serve_url = 'http://apitest01.laixuexi.top:8080/'
 
