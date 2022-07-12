@@ -8,11 +8,7 @@ export const cart = defineStore("cart", {
   actions: {
     addProduct(product, quantity) {
       let productIndex = this.products.findIndex((p) => {
-        if (product.id == p.product.id) {
-          return -1;
-        } else {
-          return 0;
-        }
+        return product.id == p.product.id;
       });
       if (productIndex != -1) {
         // 商品存在
